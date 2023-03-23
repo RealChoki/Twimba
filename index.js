@@ -71,6 +71,17 @@ function handleTweetBtnClick(){
 
 }
 
+function handleDeleteClick(tweetId){
+    const index = tweetsData.findIndex(function(tweet){
+        return tweet.uuid === tweetId
+    })
+    if (index > -1){
+        tweetsData.splice(index, 1)
+        render()
+    }
+    
+}
+
 function getFeedHtml(){
     let feedHtml = ``
     
@@ -132,6 +143,11 @@ function getFeedHtml(){
                     data-retweet="${tweet.uuid}"
                     ></i>
                     ${tweet.retweets}
+                </span>
+                <span class="tweet-detail">
+                    <i class="fa-solid fa-trash" 
+                    data-deletenow="${tweet.uuid}"
+                    ></i>
                 </span>
             </div>   
         </div>            
